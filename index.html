@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Pseudo Selectors Assignment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .description {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Hover Demo */
+        .hover-demo {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: bold;
+        }
+        
+        .hover-demo:hover {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* Link Styles */
+        .link-section a {
+            display: inline-block;
+            margin: 10px 15px 10px 0;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .link-section a:link {
+            background: #667eea;
+            color: white;
+            border: 2px solid #667eea;
+        }
+
+        .link-section a:link:hover {
+            background: white;
+            color: #667eea;
+        }
+        
+        .link-section a:visited {
+            background: #95a5a6;
+            color: white;
+            border: 2px solid #95a5a6;
+        }
+        
+        .link-section a:active {
+            background: #f39c12;
+            color: white;
+            transform: scale(0.95);
+        }
+        
+        /* First Child Demo */
+        .list-demo {
+            margin: 20px 0;
+        }
+
+        .list-demo ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .list-demo li {
+            padding: 15px;
+            margin: 8px 0;
+            background: #ecf0f1;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .list-demo li:hover {
+            background: #d5dbdb;
+        }
+        
+        .list-demo li:first-child {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4);
+        }
+        
+        /* First Line Demo */
+        .text-demo p {
+            line-height: 1.8;
+            color: #333;
+            text-align: justify;
+        }
+        
+        .text-demo p::first-line {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.3em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .summary-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        
+        .summary-box h3 {
+            color: #d35400;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+        }
+        
+        .summary-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .summary-box li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            color: #333;
+            font-size: 1.05em;
+        }
+        
+        .summary-box li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Pseudo Selectors Demonstration</h1>
+
+        <div class="card">
+            <h2>1. :hover Pseudo-class</h2>
+            <div class="description">
+                The :hover selector applies styles when you move your mouse over an element. It's perfect for creating interactive effects and improving user experience.
+            </div>
+            <div class="hover-demo">
+                Hover Over Me!
+            </div>
+            <div class="code-block">.hover-demo:hover {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}</div>
+        </div>
+
+        <div class="card link-section">
+            <h2>2. :link Pseudo-class</h2>
+            <div class="description">
+                The :link selector targets hyperlinks that have not been visited yet. It only works on elements with an href attribute.
+            </div>
+            <div>
+                <a href="#example1">Unvisited Link 1</a>
+                <a href="#example2">Unvisited Link 2</a>
+                <a href="#example3">Unvisited Link 3</a>
+            </div>
+            <div class="code-block">a:link {
+    background: #667eea;
+    color: white;
+    border: 2px solid #667eea;
+}</div>
+        </div>
+
+        <div class="card link-section">
+            <h2>3. :active Pseudo-class</h2>
+            <div class="description">
+                The :active selector applies styles during the moment you click on an element. Try clicking and holding on the link below!
+            </div>
+            <div>
+                <a href="#active-demo">Click and Hold This Link</a>
+            </div>
+            <div class="code-block">a:active {
+    background: #f39c12;
+    color: white;
+    transform: scale(0.95);
+}</div>
+        </div>
+
+        <div class="card">
+            <h2>4. :first-child Pseudo-class</h2>
+            <div class="description">
+                The :first-child selector targets the first element among a group of sibling elements. Notice how the first item in the list below has special styling.
+            </div>
+            <div class="list-demo">
+                <ul>
+                    <li>First Item - I'm Special!</li>
+                    <li>Second Item - Regular styling</li>
+                    <li>Third Item - Regular styling</li>
+                    <li>Fourth Item - Regular styling</li>
+                    <li>Fifth Item - Regular styling</li>
+                </ul>
+            </div>
+            <div class="code-block">.list-demo li:first-child {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+}</div>
+        </div>
+
+        <div class="card link-section">
+            <h2>5. :visited Pseudo-class</h2>
+            <div class="description">
+                The :visited selector changes the appearance of links that have been clicked. Click the links above to see them change color!
+            </div>
+            <div>
+                <a href="#visited1">Test Visited Link 1</a>
+                <a href="#visited2">Test Visited Link 2</a>
+            </div>
+            <div class="code-block">a:visited {
+    background: #95a5a6;
+    color: white;
+    border: 2px solid #95a5a6;
+}</div>
+        </div>
+
+        <div class="card">
+            <h2>6. ::first-line Pseudo-element</h2>
+            <div class="description">
+                The ::first-line selector applies styles only to the first line of text in an element. Notice the double colon (::) for pseudo-elements versus single colon (:) for pseudo-classes.
+            </div>
+            <div class="text-demo">
+                <p>This is the first line of the paragraph and it has special styling that makes it stand out from the rest of the text. As you can see, only the first line is styled differently with larger, bold, red text in uppercase. The remaining lines maintain normal formatting so you can clearly see the difference between the first line and the rest of the paragraph content.</p>
+            </div>
+            <div class="code-block">.text-demo p::first-line {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.3em;
+    text-transform: uppercase;
+}</div>
+        </div>
+
+        <div class="summary-box">
+            <h3>Summary of CSS Pseudo Selectors</h3>
+            <ul>
+                <li><strong>:hover</strong> - Applies when mouse hovers over element</li>
+                <li><strong>:link</strong> - Targets unvisited hyperlinks</li>
+                <li><strong>:active</strong> - Applies when element is being clicked</li>
+                <li><strong>:first-child</strong> - Selects the first child element</li>
+                <li><strong>:visited</strong> - Targets links that have been clicked</li>
+                <li><strong>::first-line</strong> - Styles only the first line of text</li>
+            </ul>
+            <p style="margin-top: 20px; color: #333; font-style: italic;">
+                <strong>Note:</strong> Pseudo-classes use a single colon (:) while pseudo-elements use double colons (::)
+            </p>
+        </div>
+    </div>
+</body>
+</html>
